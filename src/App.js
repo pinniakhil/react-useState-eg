@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  const [count, setCount] = useState(4)
+  const [theme, setTheme] = useState('blue')
+
+  function decrementCount() {
+   setCount(prevCount => prevCount - 1)
+  }
+
+  function incrementCount() {
+    setCount(prevCount => prevCount + 1)
+    setTheme('red')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <><button onClick={decrementCount}>-</button>
+    <span>{count}</span>
+    <span>{theme}</span>
+    <button onClick={incrementCount}>+</button></>
   );
 }
 
 export default App;
+/*
+Here we are  using 2 different hooks to manage our 2 diff types of state and thats actually 
+one of the biggest benifits of the useState hooks is to have multiple different pieces of state all broken out
+into and it becomes easier to manage and change.
+
+for example here we can change our theme in incrementCount we can do that by adding 
+setTheme('red') to line 13.
+*/
